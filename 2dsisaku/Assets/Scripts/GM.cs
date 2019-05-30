@@ -12,16 +12,17 @@ public class GM : MonoBehaviour
     private Transform enemyObj;
     public player1 player;
     public enemy_script enemy0;
-    int Php = player1.HP;
-    int Pmp = player1.MP;
-    int Patk = player1.ATK;
-    int Pdef = player1.DEF;
+    //プレイヤーステータス
+    int Php = player1.HP, Pmp = player1.MP;
+    int Patk = player1.ATK, Pdef = player1.DEF;
     int Pspd = player1.SPD;
-    int Ehp = enemy_script.HP;
-    int Emp = enemy_script.MP;
-    int Eatk = enemy_script.ATK;
-    int Edef = enemy_script.DEF;
+    //エネミーステータス
+    int Ehp = enemy_script.HP, Emp = enemy_script.MP;
+    int Eatk = enemy_script.ATK, Edef = enemy_script.DEF;
     int Espd = enemy_script.SPD;
+    //現在ステータス変数は五種存在し、体力、魔力、攻撃力、防御力、素早さでできている
+    //予定としては魔撃力（MP）抵抗力（MDF）を入れたらなと
+
     // Start is called before the first frame update
     void Start()
     {
