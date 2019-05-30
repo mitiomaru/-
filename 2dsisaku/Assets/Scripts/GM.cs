@@ -38,8 +38,8 @@ public class GM : MonoBehaviour
     {
         //if (playerObj == null) SceneManager.LoadScene("GAMEOVER"); ;
         //if (enemyObj == null) SceneManager.LoadScene("WIN"); ;
-        //if (Random() % 100 > 10) PL_ATK();
-        //if (Random() % 100 > 10) EN_ATK();
+        //PL_ATK();
+        //EN_ATK();
 
     }
 
@@ -50,11 +50,13 @@ public class GM : MonoBehaviour
 
     void PL_ATK()//プレイヤーの攻撃
     {
-        Ehp -= (Patk - Edef);
+        //if (Random() % 100 > 10)//命中判定（一割外れ） 
+        Ehp -= (Patk - Edef);//敵にプレイヤーが攻撃
     }
     void EN_ATK()//プレイヤーの攻撃
     {
-        Php -= (Eatk - Pdef);
+        //if (Random() % 100 > 10)// 命中判定（一割外れ）
+        Php -= (Eatk - Pdef);//プレイヤーに敵が攻撃
     }
 
 
