@@ -38,8 +38,8 @@ public class GM : MonoBehaviour
     {
         //if (playerObj == null) SceneManager.LoadScene("GAMEOVER"); ;
         //if (enemyObj == null) SceneManager.LoadScene("WIN"); ;
-        if (Random() % 100 > 10) PL_ATK();
-        if (Random() % 100 > 10) EN_ATK();
+        //if (Random() % 100 > 10) PL_ATK();
+        //if (Random() % 100 > 10) EN_ATK();
 
     }
 
