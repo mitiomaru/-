@@ -21,7 +21,7 @@ public class GM : MonoBehaviour
     int Eatk = enemy_script.ATK, Edef = enemy_script.DEF;
     int Espd = enemy_script.SPD;
     //現在ステータス変数は五種存在し、体力、魔力、攻撃力、防御力、素早さでできている
-    //予定としては魔撃力（MP）抵抗力（MDF）を入れたらなと
+    //予定としては魔撃力（MAT）抵抗力（MDF）を入れたらなと
 
     // Start is called before the first frame update
     void Start()
