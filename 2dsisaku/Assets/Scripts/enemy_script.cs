@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class enemy_script : MonoBehaviour
 {
-    public static int HP = 200;
-    public static int MP = 0;
+    public static int HP = 200, mHP = 200;
+    public static int MP = 0, mMP = 0;
     public static int ATK = 10;
     public static int DEF = 10;
     public static int SPD = 10;
