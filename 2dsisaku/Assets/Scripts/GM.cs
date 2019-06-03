@@ -9,7 +9,7 @@ public class GM : MonoBehaviour
 {
     public GameObject enemy;  // Enemyプレハブ
     public int command_position = 0;
-    private Transform playerObj; private Transform enemyObj;
+    private Transform playerObj; private Transform enemyObj; private Transform TurnObj;
     public player1 player;
     public enemy_script enemy0;
     //プレイヤーステータス
@@ -27,15 +27,23 @@ public class GM : MonoBehaviour
     
     public GameObject HP_bar = null; // HPとMPを送り出す
     public GameObject MP_bar = null; // Textオブジェクト
+
+    public GameObject buttonAttack;//ボタン：攻撃
+    public GameObject buttonGuard;//ボタン：防御
+    public GameObject buttonItem;//ボタン：アタック
+
+    public GameObject Turn = null; // Textオブジェクト
+    int turnNo;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        turnNo = 1;
         Instantiate(enemy, transform.position, transform.rotation);
         //バトル開始時、敵を召還する（まだ試験段階なので一体だけ）
         playerObj = GameObject.Find("pl").GetComponent<Transform>();
         enemyObj = GameObject.Find("en").GetComponent<Transform>();
-
+        TurnObj = GameObject.Find("Turn").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -50,11 +58,13 @@ public class GM : MonoBehaviour
         // オブジェクトからTextコンポーネントを取得
         Text HP_text = HP_bar.GetComponent<Text>();
         Text MP_text = MP_bar.GetComponent<Text>();
+        Text Turn_text = Turn.GetComponent<Text>();
         // テキストの表示を入れ替える
         if (Php < 0) Php = 0;
         if (Pmp < 0) Pmp = 0;
         HP_text.text = "HP:" + Php + "/" + mPhp;
         MP_text.text = "MP:" + Pmp + "/" + mPmp;
+        Turn_text.text = "Turn"+turnNo;
     }
 
     private int Random()
