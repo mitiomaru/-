@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GM : MonoBehaviour
 {
     public GameObject enemy;  // Enemyプレハブ
-    public int command_position = 0;
+    public int command = 0;
     private Transform playerObj; private Transform enemyObj; private Transform TurnObj;
     public player1 player;
     public enemy_script enemy0;
@@ -24,21 +24,27 @@ public class GM : MonoBehaviour
     int Espd = enemy_script.SPD;
     //現在ステータス変数は五種存在し、最大/現在の体力と魔力、攻撃力、防御力、素早さでできている
     //予定としては魔撃力（MAT）抵抗力（MDF）を入れたらなと
-    
+
     public GameObject HP_bar = null; // HPとMPを送り出す
     public GameObject MP_bar = null; // Textオブジェクト
+
+    public GameObject scroll_View_comand;//スクロールするコマンド
 
     public GameObject buttonAttack;//ボタン：攻撃
     public GameObject buttonGuard;//ボタン：防御
     public GameObject buttonItem;//ボタン：アタック
 
     public GameObject Turn = null; // Textオブジェクト
-    int turnNo;
+    int turnNo, damage;
+    bool P_Guard, E_Guard;//互いのガードフラグ
+    float random;
 
     // Start is called before the first frame update
     void Start()
     {
-        turnNo = 1;
+        int Attack;
+        P_Guard = false;//最初はガードしていない
+        turnNo = 1;//最初のターン数は１
         Instantiate(enemy, transform.position, transform.rotation);
         //バトル開始時、敵を召還する（まだ試験段階なので一体だけ）
         playerObj = GameObject.Find("pl").GetComponent<Transform>();
@@ -64,14 +70,14 @@ public class GM : MonoBehaviour
         if (Pmp < 0) Pmp = 0;
         HP_text.text = "HP:" + Php + "/" + mPhp;
         MP_text.text = "MP:" + Pmp + "/" + mPmp;
-        Turn_text.text = "Turn"+turnNo;
-    }
+        Turn_text.text = "Turn" + turnNo;
 
-    private int Random()
+    }
+    int Random_Generator()//これを使うことで0～99の乱数ができる
     {
-        throw new NotImplementedException();
-    }
-
+        return (int)UnityEngine.Random.Range(0.0f, 100.0f);//※100は出ないぞ
+    }                       //※ルール的に0=100なので注意
+    /*
     void PL_ATK()//プレイヤーの攻撃
     {
         //if (Random() % 100 > 10)//命中判定（一割外れ） 
@@ -81,14 +87,65 @@ public class GM : MonoBehaviour
     {
         //if (Random() % 100 > 10)// 命中判定（一割外れ）
         Php -= (Eatk - Pdef);//プレイヤーに敵が攻撃
+    }*/
+    public void PushButtonAttack()//攻撃をタップ
+    {
+        
+        
+            command = 1;
+        
+        
+        Main_Phase();
     }
+    public void PushButtonGuard()//防御をタップ
+    {
+        P_Guard = true;
+    }
+    public void PushButtonItem()//アイテムをタップ
+    {
+    }
+    void Main_Phase()
+    {
+        scroll_View_comand.SetActive(false);
+        if (Pspd >= Espd)//相手以上に速いかどうかで先制を決める
+        {
+            Playr_Action(command);
+            Enemy_Action();
+        }
+        else
+        {
+            Enemy_Action();
+            Playr_Action(command);
+        }
+        scroll_View_comand.SetActive(true);//処理が終わったらコマンドを再起動させて待機
+        turnNo++;
+        command = 0;//コマンド初期化
+    }
+    void Playr_Action(int com)//プレイヤー行動内容
+    {
+        switch (com)//選んだコマンドによって分かれる
+        {
+            case 1://攻撃選択時
+                random = Random_Generator();//乱数が欲しいときに
+                if (random < 90)//命中判定（一割外れ）
+                {
+                    Ehp -= damage = (Patk - Edef);//プレイヤーが敵に攻撃
+                    Debug.Log("playr attack" + damage);//ダメージを表示
+                }
+                else Debug.Log("playr attack miss" + (random + 1));//0が100のため一つずらします
+
+                break;
+
+            default:
+                break;//何も設定していないとかだと棒立ちをかまします
+        }
+    }
+    void Enemy_Action()//敵行動内容
+    {
 
 
 
 
 
-
-
-
-
+    }
 }
