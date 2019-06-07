@@ -97,7 +97,7 @@ public class PlayerEX : MonoBehaviour
         Vector2 pos = transform.position;               // プレイヤーの座標を取得
         pos += direction * speed * Time.deltaTime;  // 移動量を加える
         pos.x = Mathf.Clamp(pos.x, min.x, max.x);   // プレイヤーのx位置を画面内で制限する
-        //pos.y = Mathf.Clamp(pos.y, min.y, max.y - 4);       // プレイヤーのy位置を画面内で制限する
+        pos.y = Mathf.Clamp(pos.y, min.y, max.y);       // プレイヤーのy位置を画面内で制限する
         transform.position = pos;       // 制限をかけた値をプレイヤーの位置とする
 
     }
@@ -110,6 +110,10 @@ public class PlayerEX : MonoBehaviour
             // ★（追加）
             destroyCount += 1;
             
+        }
+        if(c.name == "wood(Clone)")
+        {
+
         }
     }
     // ★（追加）
