@@ -32,7 +32,7 @@ public class GM : MonoBehaviour
 
     public GameObject buttonAttack;//ボタン：攻撃
     public GameObject buttonGuard;//ボタン：防御
-    public GameObject buttonItem;//ボタン：アタック
+    public GameObject buttonItem;//ボタン：アイテム
 
     public GameObject Turn = null; // Textオブジェクト
     int turnNo, damage;
