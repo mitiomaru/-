@@ -64,6 +64,7 @@ public class GM : MonoBehaviour
         // オブジェクトからTextコンポーネントを取得
         Text HP_text = HP_bar.GetComponent<Text>();
         Text MP_text = MP_bar.GetComponent<Text>();
+        Text Turn_text = Turn.GetComponent<Text>();
         // テキストの表示を入れ替える
         if (Php < 0) Php = 0;
         if (Pmp < 0) Pmp = 0;
