@@ -42,7 +42,6 @@ public class GM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int Attack;
         P_Guard = false;//最初はガードしていない
         turnNo = 1;//最初のターン数は１
         Instantiate(enemy, transform.position, transform.rotation);
