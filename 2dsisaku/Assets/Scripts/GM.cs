@@ -14,7 +14,7 @@ public class GM : MonoBehaviour
     public enemy_script enemy0;
     //プレイヤーステータス
     int Php = player1.HP, Pmp = player1.MP;
-    int mPhp = player1.mHP, mPmp = player1.mMP;
+    int mPhp = player1.mHP, mPmp = player1.mMP;     //MAXHPとMAXMP
     int Patk = player1.ATK, Pdef = player1.DEF;
     int Pspd = player1.SPD;
     //エネミーステータス
@@ -128,11 +128,11 @@ public class GM : MonoBehaviour
                 random = Random_Generator();//乱数が欲しいときに前段階として使ってください
                 if (random < 90)//命中判定（一割外れ）
                 {
-                    Ehp -= damage = (Patk - Edef);//プレイヤーが敵に攻撃
-                    Debug.Log("playr attack" + damage);//ダメージを表示
+                    Ehp -= damage = (Patk - Edef);          //プレイヤーが敵に攻撃
+                    Debug.Log("playr attack" + damage);     //ダメージを表示
                 }
-                else Debug.Log("playr attack miss" + (random + 1));//0が100のため一つずらします
-
+                else Debug.Log("playr attack miss" + (random + 1));     //今回は1～100の数値を必要としているため
+                                                                        //出力される乱数に+1しています
                 break;
 
             default:
