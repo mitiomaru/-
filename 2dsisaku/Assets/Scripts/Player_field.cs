@@ -40,7 +40,7 @@ public class Player_field : MonoBehaviour
     void Update()
     {
         //弾の発射処理
-        //if (Input.GetButton ("Fire1")) {	//ボタン１が押されたら：Ctrlキー、マウス左ボタン、ゲームパッドの１ボタン
+        //if (Input.GetButton ("Fire1")) {	
         if (Input.GetKey(KeyCode.Z))
         {   //
           
